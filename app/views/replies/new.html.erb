@@ -1,0 +1,16 @@
+<h2>New Reply</h2>
+
+<p>You are posting as: <strong><%= current_user.f_name %> <%= current_user.l_name %></strong> to the post: <%= @post.content %> by <%= @post.user.f_name %></p>
+
+<%= form_for [@neighborhood, @post, @reply] do |f| %>
+
+  <div class="field">
+    <%= f.label 'Content' %><br />
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+
+<% end %>

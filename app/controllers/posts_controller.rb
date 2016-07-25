@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_neighborhood, :set_user, :set_post
+  before_action :set_neighborhood, #:set_post, set_user
 
   def index
     @posts = @neighborhood.posts
@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def new
     @post = @neighborhood.posts.new
+    @user = current_user
   end
 
   def create
@@ -43,10 +44,10 @@ private
   def set_neighborhood
     @neighborhood = Neighborhood.find(params[:neighborhood_id])
   end
-
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+  #
+  # def set_user
+  #   @user = User.find(params[:user_id])
+  # end
 
   def set_post
     @post = Post.find(params[:id])

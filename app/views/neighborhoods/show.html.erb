@@ -1,3 +1,5 @@
+<h1><%= @neighborhood.name %></h1>
+
 <h3>Carpools in this Neighborhood</h3>
 
 <ul>
@@ -18,7 +20,7 @@
       <% end %>
       </ul>
     <% end %>
-    <%#= link_to 'Reply to this post', new_neighborhood_post_reply(@neighborhood, @post) %>
+    <%= link_to 'Reply to this post', new_neighborhood_post_reply_path(@neighborhood.id, post.id) %>
   <% end %>
 </ul>
 
