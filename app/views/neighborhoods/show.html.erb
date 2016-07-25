@@ -1,0 +1,19 @@
+<h3>Carpools in this Neighborhood</h3>
+
+<ul>
+  <% @neighborhood.carpools.each do |carpool| %>
+    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(carpool) %></li>
+  <% end %>
+</ul>
+<!--
+<h3>Posts for this Neighborhood</h3>
+
+<ul>
+  <%# @neighborhood.posts.each do |post| %>
+    <li><%#= post.name %> | <%#= link_to 'View this post', neighborhood_post_path(post) %></li>
+  <%# end %>
+</ul> -->
+
+  <!-- if post.replies
+  post.replies.each do |reply|
+   show all replies -->

@@ -1,14 +1,16 @@
 class CarpoolsController < ApplicationController
+  before_action :set_neighborhood
+
   def index
-    @carpools = Carpool.all
+    @carpools = @neighborhood.carpools
   end
 
   def new
-    @carpool = Carpool.new
+    @carpool = @neighborhood.carpools.new
   end
 
   def create
-    @carpool = Carpool.new
+    @carpool = @neighborhood.carpools.new
 
     if @carpool.save
       redirect_to @carpool, notice: 'Carpool was successfully created.'
@@ -39,4 +41,10 @@ class CarpoolsController < ApplicationController
     @carpool.destroy
     redirect_to current_user, notice: 'Carpool was successfully destroyed.'
   end
+
+private
+  def set_neighborhood
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
+  end
+
 end
