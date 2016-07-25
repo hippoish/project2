@@ -20,7 +20,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post
   end
 
   def edit
