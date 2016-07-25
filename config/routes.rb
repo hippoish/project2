@@ -1,5 +1,25 @@
 Rails.application.routes.draw do
+  root  'welcome#index'
+
   devise_for :users
+
+  get '/neighborhoods' => 'neighborhoods#index', as: :neighborhoods
+  get '/neighborhoods/new' => 'neighborhoods#new', as: :new_neighborhood
+  post '/neighborhoods' => 'neighborhoods#create'
+  get '/neighborhoods/:id/edit' => 'neighborhoods#edit', as: :edit_neighborhood
+  get '/neighborhoods/:id' => 'neighborhoods#show', as: :neighborhood
+  patch '/neighborhoods/:id' => 'neighborhoods#update'
+  delete '/neighborhoods/:id' => 'neighborhoods#destroy'
+
+  get '/carpools' => 'carpools#index'
+  get '/carpools/new' => 'carpools#new', as: :new_carpool
+  post '/carpools' => 'carpools#create'
+  get '/carpools/:id/edit' => 'carpools#edit', as: :edit_carpool
+  get '/carpools/:id' => 'carpools#show', as: :carpool
+  patch '/carpools/:id' => 'carpools#update'
+  delete '/carpools/:id' => 'carpools#destroy'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,8 @@
+<h1>Carpools for <%= Neighborhood.first %> </h1>
+
+<% @carpools.where(neighborhood == Neighborhood.first) each do |carpool| %>
+  <ul>
+    <li><strong></strong> &nbsp; </li>
+  </ul>
+
+<% end %>
