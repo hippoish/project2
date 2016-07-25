@@ -21,6 +21,31 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label 'First Name' %><br />
+    <%= f.text_field :f_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Last Name' %><br />
+    <%= f.text_field :l_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :neighborhood %><br />
+    <%= f.text_field :neighborhood %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'I have a car' %>
+    <%= f.check_box :has_car %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'My car has the following number of seats: ' %>
+    <%= f.select :car_seats, (2..8) %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

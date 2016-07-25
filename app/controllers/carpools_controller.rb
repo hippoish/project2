@@ -1,5 +1,5 @@
 class CarpoolsController < ApplicationController
-  before_action :set_neighborhood
+  before_action :set_neighborhood, :set_carpool
 
   def index
     @carpools = @neighborhood.carpools
@@ -20,16 +20,13 @@ class CarpoolsController < ApplicationController
   end
 
   def show
-    @carpool = Carpool.find(params[:id])
   end
 
   def edit
-    @carpool = Carpool.find(params[:id])
   end
 
   def update
-    @carpool = Carpool.find(params[:id])
-
+    
     if @carpool.update_attributes(:carpool)
       redirect_to @carpool, notice: 'Carpool was successfully updated.'
     else
@@ -45,6 +42,10 @@ class CarpoolsController < ApplicationController
 private
   def set_neighborhood
     @neighborhood = Neighborhood.find(params[:neighborhood_id])
+  end
+
+  def set_carpool
+    @carpool = Carpool.find(params[:id])
   end
 
 end

@@ -2,17 +2,22 @@
 
 <ul>
   <% @neighborhood.carpools.each do |carpool| %>
-    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(carpool) %></li>
+    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %></li>
   <% end %>
 </ul>
-<!--
+
 <h3>Posts for this Neighborhood</h3>
 
 <ul>
-  <%# @neighborhood.posts.each do |post| %>
-    <li><%#= post.name %> | <%#= link_to 'View this post', neighborhood_post_path(post) %></li>
-  <%# end %>
-</ul> -->
+  <% @neighborhood.posts.each do |post| %>
+    <li><strong><%= post.user.f_name %>:</strong> <%= post.content %> <%#= link_to 'View this post', neighborhood_post_path(@neighborhood, post) %></li>
+    <% if post.replies %>
+      <% post.replies.each do |reply| %>
+        <li> <%= reply.user.f_name %>: <%= reply.content %></li>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
 
   <!-- if post.replies
   post.replies.each do |reply|

@@ -1,4 +1,5 @@
 class NeighborhoodsController < ApplicationController
+  before_action :set_neighborhood
 
   def new
     @neighborhood = Neighborhood.new
@@ -15,15 +16,12 @@ class NeighborhoodsController < ApplicationController
   end
 
   def show
-    @neighborhood = Neighborhood.find(params[:id])
   end
 
   def edit
-    @neighborhood = Neighborhood.find(params[:id])
   end
 
   def update
-    @neighborhood = Neighborhood.find(params[:id])
 
     if @neighborhood.update_attributes(:neighborhood)
       redirect_to current_user, notice: 'Neighborhood was successfully updated.'
@@ -35,5 +33,10 @@ class NeighborhoodsController < ApplicationController
   def destroy
     @neighborhood.destroy
     redirect_to current_user, notice: 'Neighborhood was successfully destroyed.'
+  end
+
+private
+  def set_neighborhood
+    @neighborhood = Neighborhood.find(params[:id])
   end
 end
