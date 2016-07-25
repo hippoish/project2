@@ -16,7 +16,7 @@
     <% if post.replies %>
       <ul>
       <% post.replies.each do |reply| %>
-        <li> <%= reply.user.f_name %>: <%= reply.content %></li>
+        <li> <strong><%= reply.user.f_name %>:</strong> <%= reply.content %></li>
       <% end %>
       </ul>
     <% end %>

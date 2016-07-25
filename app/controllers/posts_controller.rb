@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @neighborhood.posts.new
+    @post.user_id = current_user.id
 
     if @post.save
       redirect_to @neighborhood, notice: 'Post was successfully created.'

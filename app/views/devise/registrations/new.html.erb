@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :neighborhood %><br />
-    <%= f.text_field :neighborhood %>
+    <%= f.collection_select(:neighborhood_id, Neighborhood.all, :id, :name) %>
   </div>
 
   <div class="field">
@@ -41,10 +41,12 @@
     <%= f.check_box :has_car %>
   </div>
 
-  <div class="field">
-    <%= f.label 'My car has the following number of seats: ' %>
-    <%= f.select :car_seats, (2..8) %>
-  </div>
+  <% if :has_car %>
+    <div class="field">
+      <%= f.label 'My car has the following number of seats: ' %>
+      <%= f.select :car_seats, (2..8) %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
