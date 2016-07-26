@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  patch '/neighborhood/:neighborhood_id/carpools/:id'=> 'carpools#join_carpool', as: :join_carpool
+  patch '/neighborhood/:neighborhood_id/carpools/:id' => 'carpools#join_carpool', as: :join_carpool
 
   # get '/neighborhoods' => 'neighborhoods#index', as: :neighborhoods
   # get '/neighborhoods/new' => 'neighborhoods#new', as: :new_neighborhood

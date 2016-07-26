@@ -10,6 +10,34 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+ @import 'bootstrap-sprockets';
+ @import 'bootstrap';
+
+
+h1{
+  // color: red;
+}
+
+.container {
+  background-image: url('carpool_ad.jpeg');
+  background-repeat: repeat;
+  background-size: 100%;
+  // z-index: -1;
+}
+
+.welcome {
+  height: 750px;
+}
+
+.welcome-headers {
+  color: white;
+  text-align: center;
+  background-color: rgba(1,1,1,0.75);
+}
+//
+// #welcome-ga-logo {
+//   width: 50%;
+//   height: 50%
+// }

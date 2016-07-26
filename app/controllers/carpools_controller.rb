@@ -1,5 +1,6 @@
 class CarpoolsController < ApplicationController
-  before_action :set_neighborhood, :set_carpool
+  before_action :set_neighborhood
+  before_action :set_carpool
 
   def index
     @carpools = @neighborhood.carpools

@@ -1,12 +1,14 @@
 <h1><%= @neighborhood.name %></h1>
 
-<h3>Carpools in this Neighborhood</h3>
+<h3>Existing Carpools in <%= @neighborhood.name %></h3>
 
 <ul>
   <% @neighborhood.carpools.each do |carpool| %>
     <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%#=link_to 'Join this carpool', neighborhood_carpool_path(@neighborhood, carpool)%></li>
   <% end %>
 </ul>
+<!-- <h5>Create a New Carpool:</h5> -->
+<%#= render 'partials/form_new_carpool' %>
 
 <h3>Posts for this Neighborhood</h3>
 
