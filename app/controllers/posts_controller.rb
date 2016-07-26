@@ -30,15 +30,17 @@ class PostsController < ApplicationController
   def update
 
     if @post.update_attributes(:post)
-      redirect_to @neighborhood, notice: 'Post was successfully updated.'
+      redirect_to @neighborhood_path, notice: 'Post was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
+    @post = Post.find(params[:id])
+
     @post.destroy
-    redirect_to @neighborhood, notice: 'Post was successfully destroyed.'
+    redirect_to :back, notice: 'Post was successfully destroyed.'
   end
 
 private
