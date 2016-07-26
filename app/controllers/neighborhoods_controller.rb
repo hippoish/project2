@@ -17,6 +17,7 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @post = Post.new
+    @reply = Reply.new
   end
 
   def edit

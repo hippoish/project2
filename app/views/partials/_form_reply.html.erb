@@ -1,8 +1,12 @@
-<%= form_for [@neighborhood, @post, @reply] do |f| %>
+<%= form_for [@neighborhood, post, @reply] do |f| %>
 
   <div class="field">
     <%= f.label 'Reply' %><br />
     <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :post_id, :value => post.id %>
   </div>
 
   <div class="actions">

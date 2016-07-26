@@ -1,17 +1,16 @@
 class RepliesController < ApplicationController
-  before_action :set_neighborhood, :set_post#, :set_user,  :set_reply
+  before_action :set_neighborhood#, :set_post#, :set_user,  :set_reply
 
   def index
     @replies = @post.replies
   end
 
   def new
-    @reply = @post.replies.new
+    @reply = Reply.new
   end
 
   def create
-    @reply = @post.replies.new(reply_params)
-    @reply.post_id = @post.id
+    @reply = Reply.new(reply_params)
     @reply.user_id = current_user.id
 
     if @reply.save
@@ -43,7 +42,12 @@ class RepliesController < ApplicationController
 
 private
   def set_neighborhood
-    @neighborhood = Neighborhood.find(params[:neighborhood_id])
+    if params[:neighborhood_id]
+      @neighborhood = Neighborhood.find(params[:neighborhood_id])
+    else
+      @neighborhood = Neighborhood.find(params[:id])
+    end
+    p '@neighborhood is #{@neighborhood}'      
   end
 
   def set_post

@@ -20,7 +20,7 @@
       <% end %>
       </ul>
     <% end %>
-    <%= render 'partials/form_reply' %>
+    <%= render 'partials/form_reply', :post => post %>
     <%#= link_to 'Reply to this post', new_neighborhood_post_reply_path(@neighborhood.id, post.id) %>
   <% end %>
 </ul>
