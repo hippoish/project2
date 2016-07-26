@@ -16,6 +16,7 @@ class NeighborhoodsController < ApplicationController
   end
 
   def show
+    @post = Post.new
   end
 
   def edit

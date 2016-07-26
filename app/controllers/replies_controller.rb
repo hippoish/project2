@@ -11,6 +11,7 @@ class RepliesController < ApplicationController
 
   def create
     @reply = @post.replies.new(reply_params)
+    @reply.post_id = @post.id
     @reply.user_id = current_user.id
 
     if @reply.save

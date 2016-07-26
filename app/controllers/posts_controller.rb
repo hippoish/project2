@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_neighborhood, #:set_post, :set_user
+  before_action :set_neighborhood#, :set_post, :set_user
 
   def index
     @posts = @neighborhood.posts
