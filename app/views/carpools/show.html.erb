@@ -2,9 +2,11 @@
 
 <ul>
   <% @carpool.users.each do |user| %>
-    <li>user.name</li>
+    <li><%= user.f_name %> <%= user.l_name %></li>
   <% end %>
 
 </ul>
 
-<button type="button" name="button">Join this Carpool!</button>
+<%= form_for [@neighborhood, @carpool], :url => join_carpool_path, :html => { :method => :patch } do |f|%>
+  <%= f.submit 'join this carpool!' %>
+<% end %>

@@ -1,6 +1,5 @@
 class RepliesController < ApplicationController
   before_action :set_neighborhood#, :set_post#, :set_user,
-  # before_action :set_reply
   before_action :set_post
 
   def index
@@ -57,7 +56,7 @@ private
   def set_post
     @post = Post.find(params[:post_id])
   end
-
+  #
   # def set_reply
   #   @reply = Reply.find(params[:id])
   # end

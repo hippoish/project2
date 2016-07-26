@@ -26,7 +26,7 @@ class CarpoolsController < ApplicationController
   end
 
   def update
-    
+
     if @carpool.update_attributes(:carpool)
       redirect_to @carpool, notice: 'Carpool was successfully updated.'
     else
@@ -37,6 +37,16 @@ class CarpoolsController < ApplicationController
   def destroy
     @carpool.destroy
     redirect_to current_user, notice: 'Carpool was successfully destroyed.'
+  end
+
+  def join_carpool
+    @carpool.users << current_user
+
+    if @carpool.save
+      redirect_to neighborhood_carpool_path(@neighborhood, @carpool), notice: 'You joined this Carpool!'
+    else
+      render :edit
+    end
   end
 
 private
