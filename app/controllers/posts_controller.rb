@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_neighborhood, #:set_post, set_user
+  before_action :set_neighborhood, #:set_post, :set_user
 
   def index
     @posts = @neighborhood.posts
@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = @neighborhood.posts.new
+    @post = @neighborhood.posts.new(post_params)
     @post.user_id = current_user.id
 
     if @post.save
@@ -45,12 +45,16 @@ private
   def set_neighborhood
     @neighborhood = Neighborhood.find(params[:neighborhood_id])
   end
-  #
-  # def set_user
-  #   @user = User.find(params[:user_id])
-  # end
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:content, :user_id, :neighborhood_id)
   end
 end

@@ -61,5 +61,4 @@ private
   #   @reply = Reply.find(params[:id])
   # end
 
-
 end
