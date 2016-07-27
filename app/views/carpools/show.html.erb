@@ -1,13 +1,18 @@
+<%= link_to 'Back to my neighborhood', neighborhood_path(current_user.neighborhood) %>
+
 <h1><%= @carpool.name %></h1>
+<%= link_to ' Delete this Carpool', neighborhood_carpool_path(@neighborhood, @carpool), method: :delete, data: { confirm: 'Are you sure?'  } if @carpool.users.first == current_user %>
 
 <ul>
   <%= 'This carpool has no members yet!' if @carpool.users.length == 0 %>
   <% @carpool.users.each do |user| %>
-    <li><%= user.f_name %> <%= user.l_name %></li>
+    <li><strong><%= user.f_name %> <%= user.l_name %></strong> car: <%= '&#10004;'.html_safe if user.has_car %> <%= '&#10008;'.html_safe if user.has_car == false %> <%= 'seats: ' if user.has_car %> <%= user.car_seats if user.has_car %></li>
   <% end %>
 
 </ul>
 
-<%= form_for [@neighborhood, @carpool], :url => join_carpool_path, :html => { :method => :patch } do |f|%>
-  <%= f.submit 'join this carpool!' %>
+<% unless current_user.carpool %>
+  <%= form_for [@neighborhood, @carpool], :url => join_carpool_path, :html => { :method => :patch } do |f|%>
+    <%= f.submit 'join this carpool!' %>
+  <% end %>
 <% end %>

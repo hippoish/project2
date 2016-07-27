@@ -4,7 +4,7 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label (:email, 'Email address') %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
@@ -22,31 +22,29 @@
   </div>
 
   <div class="field">
-    <%= f.label 'First Name' %><br />
+    <%= f.label (:f_name, 'First Name') %><br />
     <%= f.text_field :f_name %>
   </div>
 
   <div class="field">
-    <%= f.label 'Last Name' %><br />
+    <%= f.label (:l_name, 'Last Name') %><br />
     <%= f.text_field :l_name %>
   </div>
 
   <div class="field">
-    <%= f.label :neighborhood %><br />
+    <%= f.label (:neighborhood, "Where do you live?") %><br />
     <%= f.collection_select(:neighborhood_id, Neighborhood.all, :id, :name) %>
   </div>
 
   <div class="field">
-    <%= f.label 'I have a car' %>
+    <%= f.label 'I have a car!' %>
     <%= f.check_box :has_car %>
   </div>
 
-  <% if :has_car %>
-    <div class="field">
-      <%= f.label 'My car has the following number of seats: ' %>
-      <%= f.select :car_seats, (2..8) %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label 'Number of seats: ' %>
+    <%= f.select :car_seats, (2..8), :include_blank => true %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

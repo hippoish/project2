@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_neighborhood#, :set_post, :set_user
 
-  def index
-    @posts = @neighborhood.posts
-  end
+  # def index
+  #   @posts = @neighborhood.posts
+  # end
 
   def new
     @post = @neighborhood.posts.new
@@ -11,10 +11,10 @@ class PostsController < ApplicationController
 
   def create
     @post = @neighborhood.posts.new(post_params)
-    @post.user_id = current_user.id
+    @post.user = current_user
 
     if @post.save
-      redirect_to @neighborhood, notice: 'Post was successfully created.'
+      redirect_to @neighborhood
     else
       render :new
     end
@@ -23,23 +23,23 @@ class PostsController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
-  def update
-
-    if @post.update_attributes(:post)
-      redirect_to @neighborhood_path, notice: 'Post was successfully updated.'
-    else
-      render :edit
-    end
-  end
+  # def edit
+  # end
+  #
+  # def update
+  #
+  #   if @post.update_attributes(:post)
+  #     redirect_to @neighborhood_path, notice: 'Post was successfully updated.'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     @post = Post.find(params[:id])
 
     @post.destroy
-    redirect_to :back, notice: 'Post was successfully destroyed.'
+    redirect_to :back
   end
 
 private
@@ -47,9 +47,9 @@ private
     @neighborhood = Neighborhood.find(params[:neighborhood_id])
   end
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
+  # def set_user
+  #   @user = User.find(params[:user_id])
+  # end
   #
   # def set_post
   #   @post = Post.find(params[:id])

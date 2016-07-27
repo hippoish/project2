@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
 protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:f_name, :l_name, :neighborhood_id, :has_car, :car_seats])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:f_name, :l_name, :neighborhood_id, :has_car, :car_seats])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:f_name, :l_name, :neighborhood_id, :has_car, :car_seats, :carpool_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:f_name, :l_name, :neighborhood_id, :has_car, :car_seats, :carpool_id])
   end
 
 end

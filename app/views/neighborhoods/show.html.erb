@@ -4,11 +4,11 @@
 
 <ul>
   <% @neighborhood.carpools.each do |carpool| %>
-    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= '|' if carpool.users.first == current_user %><%= link_to ' Destroy', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %><%#=link_to 'Join this carpool', neighborhood_carpool_path(@neighborhood, carpool)%></li>
+    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= '|' if carpool.users.first == current_user %><%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %><%#=link_to 'Join this carpool', neighborhood_carpool_path(@neighborhood, carpool)%></li>
   <% end %>
 </ul>
 
-<% if current_user.carpool_id == nil %>
+<% unless current_user.carpool %>
   <h5>Create a New Carpool:</h5>
   <!-- Button to trigger new carpool modal -->
   <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newCarpool'>Create</button>
@@ -31,7 +31,7 @@
 <% end %>
 
 <h3>Neighborhood Posts</h3>
-
+<%= "You are the first person from your neighborhood to post! Tell people what you're looking for." unless @neighborhood.posts.length == 0%>
 <ul>
   <% @neighborhood.posts.each do |post| %>
     <li>
