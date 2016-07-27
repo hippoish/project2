@@ -1,6 +1,6 @@
 class CarpoolsController < ApplicationController
   before_action :set_neighborhood
-  before_action :set_carpool
+  before_action :set_carpool, only: [:edit, :show, :update, :destroy]
 
   def index
     @carpools = @neighborhood.carpools
@@ -11,10 +11,11 @@ class CarpoolsController < ApplicationController
   end
 
   def create
-    @carpool = @neighborhood.carpools.new
+    @carpool = @neighborhood.carpools.new(carpool_params)
+    @carpool.users << current_user
 
     if @carpool.save
-      redirect_to @carpool, notice: 'Carpool was successfully created.'
+      redirect_to :back, notice: 'Carpool was successfully created.'
     else
       render :new
     end
@@ -37,7 +38,7 @@ class CarpoolsController < ApplicationController
 
   def destroy
     @carpool.destroy
-    redirect_to current_user, notice: 'Carpool was successfully destroyed.'
+    redirect_to :back, notice: 'Carpool was successfully destroyed.'
   end
 
   def join_carpool
@@ -57,6 +58,10 @@ private
 
   def set_carpool
     @carpool = Carpool.find(params[:id])
+  end
+
+  def carpool_params
+    params.require(:carpool).permit(:name, :neighborhood_id)
   end
 
 end

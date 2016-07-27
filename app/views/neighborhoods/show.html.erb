@@ -1,16 +1,36 @@
 <h1><%= @neighborhood.name %></h1>
 
-<h3>Existing Carpools in <%= @neighborhood.name %></h3>
+<h3>Current <%= @neighborhood.name %> Carpools</h3>
 
 <ul>
   <% @neighborhood.carpools.each do |carpool| %>
-    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%#=link_to 'Join this carpool', neighborhood_carpool_path(@neighborhood, carpool)%></li>
+    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= '|' if carpool.users.first == current_user %><%= link_to ' Destroy', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %><%#=link_to 'Join this carpool', neighborhood_carpool_path(@neighborhood, carpool)%></li>
   <% end %>
 </ul>
-<!-- <h5>Create a New Carpool:</h5> -->
-<%#= render 'partials/form_new_carpool' %>
 
-<h3>Posts for this Neighborhood</h3>
+<% if current_user.carpool_id == nil %>
+  <h5>Create a New Carpool:</h5>
+  <!-- Button to trigger new carpool modal -->
+  <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newCarpool'>Create</button>
+  <!-- Modal -->
+  <div class='modal fade' id='newCarpool'>
+    <div class="modal-dialog modal-sm" role='document'>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class='close' data-dismiss='modal' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+          <h4 class='modal-title'>Enter a Carpool name</h4>
+        </div>
+        <div class="modal-body">
+          <%= render 'partials/form_new_carpool' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<h3>Neighborhood Posts</h3>
 
 <ul>
   <% @neighborhood.posts.each do |post| %>

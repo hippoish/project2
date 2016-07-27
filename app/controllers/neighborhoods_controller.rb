@@ -16,6 +16,7 @@ class NeighborhoodsController < ApplicationController
   end
 
   def show
+    @carpool = Carpool.new
     @post = Post.new
     @reply = Reply.new
   end
