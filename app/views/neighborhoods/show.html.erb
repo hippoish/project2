@@ -2,9 +2,11 @@
 
 <h3>Current <%= @neighborhood.name %> Carpools</h3>
 
+<%= "There are currently no carpools in your neighborhood. Create one below." if @neighborhood.posts.length == 0 %>
+
 <ul>
   <% @neighborhood.carpools.each do |carpool| %>
-    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= '|' if carpool.users.first == current_user %><%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %><%#=link_to 'Join this carpool', neighborhood_carpool_path(@neighborhood, carpool)%></li>
+    <li><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= '|' if carpool.users.first == current_user %><%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %></li>
   <% end %>
 </ul>
 
@@ -31,17 +33,17 @@
 <% end %>
 
 <h3>Neighborhood Posts</h3>
-<%= "You are the first person from your neighborhood to post! Tell people what you're looking for." unless @neighborhood.posts.length == 0%>
+<%= "You are the first person from your neighborhood to post! Tell people what you're looking for." if @neighborhood.posts.length == 0 %>
 <ul>
   <% @neighborhood.posts.each do |post| %>
     <li>
-      <strong><%= post.user.f_name %>:</strong> <%= post.content %> <%= link_to '| edit this post', edit_neighborhood_post_path(@neighborhood, post) if post.user == current_user %> <%= link_to '| delete this post', neighborhood_post_path(@neighborhood, post), method: :delete, data: {confirm: 'Are you sure?'} if post.user == current_user %>
+      <strong><%= post.user.f_name %>:</strong> <%= post.content %> <%= '| ' if post.user == current_user %><%= link_to 'edit this post', edit_neighborhood_post_path(@neighborhood, post) if post.user == current_user %> <%= '| ' if post.user == current_user %><%= link_to 'delete this post', neighborhood_post_path(@neighborhood, post), method: :delete, data: {confirm: 'Are you sure?'} if post.user == current_user %>
     </li>
     <% if post.replies %>
       <ul>
       <% post.replies.each do |reply| %>
         <li>
-          <strong><%= reply.user.f_name %>:</strong> <%= reply.content %> <%= link_to '| edit this reply', edit_neighborhood_post_reply_path(@neighborhood, post, reply) if reply.user == current_user %> <%= link_to '| delete this reply', neighborhood_post_reply_path(@neighborhood, post, reply), method: :delete, data: {confirm: 'Are you sure?'} if reply.user == current_user %>
+          <strong><%= reply.user.f_name %>:</strong> <%= reply.content %><%= ' | ' if post.user == current_user %><%= link_to 'edit this reply', edit_neighborhood_post_reply_path(@neighborhood, post, reply) if reply.user == current_user %><%= ' | ' if post.user == current_user %> <%= link_to 'delete this reply', neighborhood_post_reply_path(@neighborhood, post, reply), method: :delete, data: {confirm: 'Are you sure?'} if reply.user == current_user %>
         </li>
       <% end %>
       </ul>
