@@ -13,6 +13,7 @@ neighborhoods = Neighborhood.create(
   {:name => 'Brentwood'},
   {:name => 'Century City'},
   {:name => 'Cheviot Hills'},
+  {:name => 'Culver City'},
   {:name => 'Del Rey'},
   {:name => 'Fairfax District'},
   {:name => 'Ladera Heights'},

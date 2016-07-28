@@ -1,6 +1,6 @@
 class CarpoolsController < ApplicationController
   before_action :set_neighborhood
-  before_action :set_carpool, only: [:edit, :show, :update, :destroy, :join_carpool]
+  before_action :set_carpool, only: [:edit, :show, :update, :destroy, :join_carpool, :leave_carpool]
 
   def index
     @carpools = @neighborhood.carpools
@@ -55,6 +55,17 @@ class CarpoolsController < ApplicationController
 
     if @carpool.save
       redirect_to neighborhood_carpool_path(@neighborhood, @carpool), notice: 'You joined this Carpool!'
+    else
+      render :edit
+    end
+  end
+
+  def leave_carpool
+    current_user.update(carpool_id: nil)
+    # current_user.save
+
+    if current_user.save
+      redirect_to neighborhood_carpool_path(@neighborhood, @carpool), notice: 'You are no longer in this Carpool.'
     else
       render :edit
     end

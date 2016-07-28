@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   patch '/neighborhood/:neighborhood_id/carpools/:id' => 'carpools#join_carpool', as: :join_carpool
+  delete '/neighborhood/:neighborhood_id/carpools/:id' => 'carpools#leave_carpool', as: :leave_carpool
+
 
   # get '/neighborhoods' => 'neighborhoods#index', as: :neighborhoods
   # get '/neighborhoods/new' => 'neighborhoods#new', as: :new_neighborhood

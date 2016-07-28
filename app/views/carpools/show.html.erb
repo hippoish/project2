@@ -1,36 +1,45 @@
-<%= link_to 'Back to my neighborhood', neighborhood_path(current_user.neighborhood) %>
+<div class='container'>
 
-<h1><%= @carpool.name %></h1>
-<%= link_to ' Delete this Carpool', neighborhood_carpool_path(@neighborhood, @carpool), method: :delete, data: { confirm: 'Are you sure?'  } if @carpool.users.first == current_user %>
+  <%= link_to 'Back to my neighborhood', neighborhood_path(current_user.neighborhood) %>
 
-<ul>
-  <%= 'This carpool has no members yet!' if @carpool.users.length == 0 %>
-  <% @carpool.users.each do |user| %>
-    <li><strong><%= user.f_name %> <%= user.l_name %></strong> car: <%= '&#10004;'.html_safe if user.has_car %> <%= '&#10008;'.html_safe if user.has_car == false %> <%= 'seats: ' if user.has_car %> <%= user.car_seats if user.has_car %></li>
-  <% end %>
-</ul>
+  <h1><%= @carpool.name %></h1>
+  <%= link_to ' Delete this Carpool', neighborhood_carpool_path(@neighborhood, @carpool), method: :delete, data: { confirm: 'Are you sure?'  } if @carpool.users.first == current_user %>
 
-<!-- check whether the current user belongs to this carpool -->
-<% if current_user.carpool != @carpool %>
-  <!-- if they don't, check whether they belong to another carpool -->
-  <% if current_user.carpool %>
-    <!-- if they have a carpool, they can't join this one -->
-    <div class="alert alert-info" role="alert">
-      You already belong to a Carpool!
-    </div>
- <% else %>
-    <!-- if they don't, they can join -->
-    <%= form_for [@neighborhood, @carpool], :url => join_carpool_path, :html => { :method => :patch } do |f|%>
-      <%= f.submit 'join this carpool!' %>
+  <ul>
+    <%= 'This carpool has no members yet!' if @carpool.users.length == 0 %>
+    <% @carpool.users.each do |user| %>
+      <li><strong><%= user.f_name %> <%= user.l_name %></strong> car: <%= '&#10004;'.html_safe if user.has_car %> <%= '&#10008;'.html_safe if user.has_car == false %> <%= 'seats: ' if user.has_car %> <%= user.car_seats if user.has_car %></li>
+    <% end %>
+  </ul>
+
+  <!-- check whether the current user belongs to this carpool -->
+  <% if current_user.carpool != @carpool %>
+    <!-- if they don't, check whether they belong to another carpool -->
+    <% if current_user.carpool %>
+      <!-- if they have a carpool, they can't join this one -->
+      <% flash[:info] = 'You already belong to a Carpool! If you covet a spot in this one, you must first leave that one.' %>
+      <!-- <div class="alert alert-info" role="alert">
+        You already belong to a Carpool!
+      </div> -->
+   <% else %>
+      <!-- if they don't, they can join -->
+      <%= form_for [@neighborhood, @carpool], :url => join_carpool_path, :html => { :method => :patch } do |f|%>
+        <%= f.submit 'Join this Carpool!' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <!-- tell them if they belong to this carpool already -->
+    <% flash[:success] = 'You already belong to this carpool! Lucky you!' %>
+    <!-- <div class="alert alert-info" role="alert">
+      You already belong to this Carpool!
+    </div> -->
+    <%= form_for [@neighborhood, @carpool], :url => leave_carpool_path, :html => { :method => :delete } do |f|%>
+      <%= f.label 'Are your carpool-mates starting to bug you?' %> <br>
+      <%= f.submit 'Leave this Carpool', data: { confirm: 'Are you sure?'  }%>
     <% end %>
   <% end %>
-<% else %>
-  <!-- tell them if they belong to this carpool already -->
-  <div class="alert alert-info" role="alert">
-    You already belong to this Carpool!
-  </div>
-<% end %>
 
-<%# unless current_user.carpool %>
+  <%# unless current_user.carpool %>
 
-<%# end %>
+  <%# end %>
+</div>

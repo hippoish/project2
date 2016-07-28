@@ -16,8 +16,22 @@
  @import 'bootstrap';
 
 
+body {
+  background-color: #444444;
+  color: white;
+}
+
 h1{
   // color: red;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: #48366E;
+  text-decoration: none;
 }
 
 div .welcome {
@@ -46,4 +60,100 @@ div .welcome {
   outline: none;
   border-color: none;
   vertical-align: middle;
+}
+
+.list-group > * {
+  background-color: rgba(0,82,127,.4)
+}
+
+/* Practice */
+.detailBox {
+    width: 90%;
+    border:1px solid #bbb;
+    border-radius: 5px;
+    margin:50px;
+    margin-top: 0;
+    max-height: 750px;
+    overflow: auto;
+    background-color: rgba(255,255,255,.8);
+    color: black;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}
+
+.neighborhood-header {
+  background-image: url('http://2.bp.blogspot.com/-CsmP17on2BM/UFy2bOx49EI/AAAAAAAAAmU/BNMTkVvuruA/s1600/lacma.jpg');
+  color: white;
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  min-height: 311px;
+  max-height: 322px;
+  text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+.neighborhood-name {
+  display: inline-block
+}
+
+.display-3{
+  vertical-align: bottom;
 }
