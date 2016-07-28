@@ -42,4 +42,6 @@ private
   def set_neighborhood
     @neighborhood = Neighborhood.find(params[:id])
   end
+
+  
 end

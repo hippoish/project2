@@ -1,7 +1,7 @@
-<!-- <h1>Carpools Index for <%#= current_user.neighborhood %></h1>
+<h1>Carpools Index</h1>
 
-<%# Carpool.where(neighborhood == current_user.neighborhood).each do |carpool| %>
+<% Carpool.all.each do |carpool| %>
   <ul>
-    <li><strong><%#= carpool.name %></strong> &nbsp; <%#= link_to 'Destroy', carpool, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <li><strong><%= carpool.name %></strong>: &nbsp; <%= carpool.description %></li>
   </ul>
-<%# end %> -->
+<% end %>
