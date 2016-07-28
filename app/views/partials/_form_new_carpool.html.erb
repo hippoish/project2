@@ -2,7 +2,13 @@
 <%= form_for [@neighborhood, @carpool] do |f| %>
 
   <div class="field">
-    <%= f.text_field :name, id: 'carpool-modal-field' %>
+    <%= f.label :name, 'Carpool Name:' %>
+    <%= f.text_field :name, class: 'modal-field' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, 'Carpool Description:' %>
+    <%= f.text_area :description, class: 'modal-field' %>
   </div>
 
   <div class="field">
@@ -10,7 +16,7 @@
   </div>
 
   <div class="actions modal-footer">
-    <button type="button" class='btn btn-secondary' data-dismiss='modal'>Close</button>
+    <button type="button" class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
     <%= f.submit 'Create Carpool!', class: 'btn btn-primary'%>
   </div>
 

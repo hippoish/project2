@@ -81,7 +81,7 @@ private
   end
 
   def carpool_params
-    params.require(:carpool).permit(:name, :neighborhood_id)
+    params.require(:carpool).permit(:name, :neighborhood_id, :description)
   end
 
 end

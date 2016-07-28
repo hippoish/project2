@@ -1,5 +1,5 @@
 <header>
-  <div class='jumbotron jumbrotron neighborhood-header'>
+  <div class='jumbotron neighborhood-header' style="background-image: url('<%= @neighborhood.img_url %>')">
     <div class="container neighborhood-name">
       <h1 class='display-3'><%= @neighborhood.name %></h1>
     </div>
@@ -14,24 +14,23 @@
 
   <ul class='list-group'>
     <% @neighborhood.carpools.each do |carpool| %>
-      <li class='list-group-item'><%= carpool.name %> | <%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= '|' if carpool.users.first == current_user %><%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %></li>
+      <li class='list-group-item'><%= carpool.name %>&nbsp;&nbsp;<%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %></li>
     <% end %>
   </ul>
 
   <% unless current_user.carpool %>
-    <h5>Create a New Carpool:</h5>
     <!-- Button to trigger new carpool modal -->
-    <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newCarpool'>Create</button>
+    <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newCarpool'>Create a New Carpool</button>
     <!-- Modal -->
     <div class='modal fade' id='newCarpool'>
       <div class="modal-dialog modal-sm" role='document'>
         <div class="modal-content">
-          <div class="modal-header">
+          <!-- <div class="modal-header">
             <button type="button" class='close' data-dismiss='modal' aria-label='Close'>
               <span aria-hidden='true'>&times;</span>
             </button>
-            <h4 class='modal-title'>Enter a Carpool name</h4>
-          </div>
+            <h5 class='modal-title'>Enter a Carpool name:</h5>
+          </div> -->
           <div class="modal-body">
             <%= render 'partials/form_new_carpool' %>
           </div>
@@ -41,9 +40,9 @@
   <% end %>
 
   <h3>Neighborhood Posts</h3>
-  <%= "You are the first person from your neighborhood to post! Tell people what you're looking for." if @neighborhood.posts.length == 0 %>
 
   <div class='detailBox'>
+    <%= "You are the first person from your neighborhood to post! Tell people what you're looking for." if @neighborhood.posts.length == 0 %>
     <% @neighborhood.posts.each do |post| %>
       <!-- <div class='titleBox'>
         <strong><%= post.user.f_name %></strong>

@@ -6,48 +6,52 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Neighborhood.destroy_all
+Carpool.destroy_all
 
 neighborhoods = Neighborhood.create(
-  [{:name => 'Beverly Grove'},
-  {:name => 'Beverlywood'},
-  {:name => 'Brentwood'},
-  {:name => 'Century City'},
-  {:name => 'Cheviot Hills'},
-  {:name => 'Culver City'},
-  {:name => 'Del Rey'},
-  {:name => 'Fairfax District'},
-  {:name => 'Ladera Heights'},
-  {:name => 'Mar Vista'},
-  {:name => 'Mid-Wilshire'},
-  {:name => 'Pacific Palisades'},
-  {:name => 'Palms'},
-  {:name => 'Pico-Robertson'},
-  {:name => 'Playa del Rey'},
-  {:name => 'Playa Vista'},
-  {:name => 'Rancho Park'},
-  {:name => 'Sawtelle'},
-  {:name => 'Venice'},
-  {:name => 'West Los Angeles'},
-  {:name => 'Westchester'},
-  {:name => 'Westwood'},
-  {:name => 'Central LA'},
-  {:name => 'Eastside'},
-  {:name => 'Harbor'},
-  {:name => 'Northeast LA'},
-  {:name => 'Pomona Valley'},
-  {:name => 'San Fernando Valley'},
-  {:name => 'San Gabriel Valley'},
-  {:name => 'South Bay'},
-  {:name => 'South LA'},
-  {:name => 'Southeast'},
-  {:name => 'Verdugos'},
+  [{:name => 'Beverly Grove', :img_url => 'https://upload.wikimedia.org/wikipedia/commons/4/41/BeverlyCenter_from_south.jpg'},
+  {:name => 'Beverly Hills', :img_url => 'http://i.huffpost.com/gen/976201/images/o-TAX-RELIEF-SCAM-FTC-facebook.jpg'},
+  {:name => 'Beverlywood', :img_url => ''},
+  {:name => 'Brentwood', :img_url => ''},
+  {:name => 'Central LA', :img_url => ''},
+  {:name => 'Century City', :img_url => 'http://www.dmassociates.com/images/made/images/projects/century-city-center-1_900_450_89.jpg'},
+  {:name => 'Cheviot Hills', :img_url => ''},
+  {:name => 'Culver City', :img_url => 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Culvercity-5044804355_12843d66a2_o.jpg'},
+  {:name => 'Del Rey', :img_url => ''},
+  {:name => 'Downtown', :img_url => 'http://www.layoverguide.com/wp-content/uploads/2010/12/Los-Angeles-downtown.jpg'},
+  {:name => 'Eastside', :img_url => ''},
+  {:name => 'Fairfax District', :img_url => 'https://a1.muscache.com/locations/uploads/photo/image/20540/0_4200_0_2800_one_the-original-farms-market-trolley-clock-tower-daytime-devon0336.jpg'},
+  {:name => 'Harbor', :img_url => ''},
+  {:name => 'Ladera Heights', :img_url => ''},
+  {:name => 'Mar Vista', :img_url => ''},
+  {:name => 'Mid-City', :img_url => 'http://2.bp.blogspot.com/-CsmP17on2BM/UFy2bOx49EI/AAAAAAAAAmU/BNMTkVvuruA/s1600/lacma.jpg'},
+  {:name => 'Northeast LA', :img_url => ''},
+  {:name => 'Pacific Palisades', :img_url => ''},
+  {:name => 'Palms', :img_url => ''},
+  {:name => 'Pico-Robertson', :img_url => ''},
+  {:name => 'Playa del Rey', :img_url => ''},
+  {:name => 'Playa Vista', :img_url => ''},
+  {:name => 'Pomona Valley', :img_url => ''},
+  {:name => 'Rancho Park', :img_url => ''},
+  {:name => 'San Fernando Valley', :img_url => ''},
+  {:name => 'San Gabriel Valley', :img_url => ''},
+  {:name => 'Santa Monica', :img_url => 'https://images.unsplash.com/photo-1414912925664-0c502cc25dde?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=17e2353600ad23ec404383cf57344a0d'},
+  {:name => 'Sawtelle', :img_url => ''},
+  {:name => 'South Bay', :img_url => ''},
+  {:name => 'South LA', :img_url => ''},
+  {:name => 'Southeast', :img_url => ''},
+  {:name => 'Venice', :img_url => 'https://hd.unsplash.com/photo-1445251836269-d158eaa028a6'},
+  {:name => 'Verdugos', :img_url => ''},
+  {:name => 'Westchester', :img_url => ''},
+  {:name => 'Westwood', :img_url => 'http://a57.foxnews.com/global.fncstatic.com/static/managed/img/Health/0/0/UCLA%20sign%20istock.jpg'}
   ])
 
 
 carpools = Carpool.create([
-  {:name => 'Super Awesome MM Carpool', :neighborhood => Neighborhood.find_by(:name => 'Miracle Mile')},
-  {:name => 'Cool Brentwood Carpool', :neighborhood => Neighborhood.find_by(:name => 'Brentwood')},
-  {:name => 'Westwood Folk Rock Commuters', :neighborhood => Neighborhood.find_by(:name => 'Westwood')}
+  {:name => 'Super Awesome MM Carpool', :neighborhood => Neighborhood.find_by(:name => 'Mid-City')},
+  {:name => 'Troup Beverly Hills', :neighborhood => Neighborhood.find_by(:name => 'Beverly Hills')},
+  {:name => 'Fairfax District Folk Rock Commuters', :neighborhood => Neighborhood.find_by(:name => 'Fairfax District')},
+  {:name => 'Bruins Carpool', :neighborhood => Neighborhood.find_by(:name => 'Westwood')}
   ])
 
   #

@@ -17,12 +17,9 @@
 
 
 body {
-  background-color: #444444;
+  background-color: #333333;
   color: white;
-}
-
-h1{
-  // color: red;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -55,7 +52,7 @@ div .welcome {
 //   width: 50%;
 //   height: 50%
 // }
-#carpool-modal-field {
+.modal-field {
   border: none;
   outline: none;
   border-color: none;
@@ -63,10 +60,9 @@ div .welcome {
 }
 
 .list-group > * {
-  background-color: rgba(0,82,127,.4)
+  background-color: rgba(125,125,125,.8)
 }
 
-/* Practice */
 .detailBox {
     width: 90%;
     border:1px solid #bbb;
@@ -74,6 +70,8 @@ div .welcome {
     margin:50px;
     margin-top: 0;
     max-height: 750px;
+    padding: 20px;
+    padding-top: 0;
     overflow: auto;
     background-color: rgba(255,255,255,.8);
     color: black;
@@ -145,15 +143,22 @@ div .welcome {
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
-  min-height: 311px;
-  max-height: 322px;
+  min-height: 400px;
+  max-height: 500px;
   text-shadow: black 0.3em 0.3em 0.3em;
+  position: relative;
 }
 
 .neighborhood-name {
-  display: inline-block
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
 }
 
 .display-3{
   vertical-align: bottom;
+}
+
+.modal-content > * {
+  color: #000000;
 }

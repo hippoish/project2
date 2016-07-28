@@ -1,9 +1,40 @@
+<header>
+  <div class='jumbotron jumbrotron neighborhood-header' style="background-image: url('<%= @neighborhood.img_url %>')">
+    <div class="container neighborhood-name">
+      <h1 class='display-3'><%= @neighborhood.name %></h1>
+    </div>
+  </div>
+</header>
+
 <div class='container'>
 
   <%= link_to 'Back to my neighborhood', neighborhood_path(current_user.neighborhood) %>
 
   <h1><%= @carpool.name %></h1>
   <%= link_to ' Delete this Carpool', neighborhood_carpool_path(@neighborhood, @carpool), method: :delete, data: { confirm: 'Are you sure?'  } if @carpool.users.first == current_user %>
+
+  <% if @carpool.users.first == current_user %>
+    <!-- Button to trigger new carpool modal -->
+    <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newCarpool'>Edit This Carpool</button>
+    <!-- Modal -->
+    <div class='modal fade' id='editCarpool'>
+      <div class="modal-dialog modal-sm" role='document'>
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <button type="button" class='close' data-dismiss='modal' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button> -->
+            <h5 class='modal-title'>Enter a Carpool name:</h5>
+          </div>
+          <div class="modal-body">
+            <%= render 'partials/form_new_carpool' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <p><%= @carpool.description %></p>
 
   <ul>
     <%= 'This carpool has no members yet!' if @carpool.users.length == 0 %>
