@@ -6,12 +6,12 @@
 
   <ul class='list-group'>
 
-    <% @neighborhood.carpools.each do |carpool| %>
+    <!-- display a message if there are no carpools yet -->
+    <% if @neighborhood.carpools.length == 0 %>
+      <li class='list-group-item'><%= 'There are currently no carpools in your neighborhood. Create one below.'%></li>
+    <% end %>
 
-      <!-- display a message if there are no carpools yet -->
-      <% if @neighborhood.carpools == 0 %>
-        <li class='list-group-item'><%= "There are currently no carpools in your neighborhood. Create one below."%></li>
-      <% end %>
+    <% @neighborhood.carpools.each do |carpool| %>
 
       <!-- show each carpool's name (and delete link if they are the owner)-->
       <li class='list-group-item'><%= carpool.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %></li>
@@ -81,7 +81,7 @@
 
                 <div class='commenterImage'>
 
-                  <img src='http://placedog.com/60/60'>
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 
                 </div>
 

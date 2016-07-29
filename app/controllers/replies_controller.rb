@@ -15,7 +15,7 @@ class RepliesController < ApplicationController
     @reply.user_id = current_user.id
 
     if @reply.save
-      redirect_to @neighborhood, notice: 'Reply was successfully posted.'
+      redirect_to @neighborhood
     else
       render :new
     end
@@ -31,7 +31,7 @@ class RepliesController < ApplicationController
     @reply = Reply.find(paramas[:id])
 
     if @reply.update_attributes(:reply)
-      redirect_to @neighborhood, notice: 'Reply was successfully updated.'
+      redirect_to @neighborhood
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
 
     @reply.destroy
-    redirect_to :back, notice: 'Reply was successfully destroyed.'
+    redirect_to :back
   end
 
 private
@@ -56,18 +56,9 @@ private
   def set_post
     @post = Post.find(params[:post_id])
   end
-  #
-  # def set_reply
-  #   @reply = Reply.find(params[:id])
-  # end
 
   def reply_params
     params.require(:reply).permit(:content, :user_id, :post_id)
   end
-  #
-  # def set_user
-  #   @user = User.find(params[:user_id])
-  # end
-  #
 
 end

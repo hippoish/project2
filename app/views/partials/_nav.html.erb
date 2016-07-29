@@ -1,4 +1,5 @@
 <nav class="navbar navbar-light bg-faded">
+
   <a class="navbar-brand nav-item" href="#">Diamond Lane</a>
 
   <ul class="nav navbar-nav">
@@ -9,7 +10,6 @@
 
     <li class="nav-item">
       <%= link_to 'My Neighborhood', neighborhood_path(current_user.neighborhood), :class => 'nav-link' unless current_user == nil%>
-
     </li>
 
   </ul>
