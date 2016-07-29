@@ -1,9 +1,24 @@
-<div class='welcome'>
-  <div class='welcome-headers'>
-    <h1>Welcome to the GA <!-- </h1> <div id='welcome-ga-logo'> <%= image_tag("ga_logo.png") %> </div> <h1>-->carpool finder!</h1>
-    <h4>Find other people commuting to GA from your neighborhood and form a carpool!</h4>
+<div class='welcome jumbotron'>
 
-    <%= link_to 'Sign Up', new_user_registration_path %> |
-    <%= link_to 'Log In', new_user_session_path %>
+  <div class='container'>
+
+    <div class='welcome-headers'>
+
+      <div class='welcome-text'>
+
+        <h1 class='display-3'>Welcome to Diamond Lane, the</h1>
+
+        <img src="https://ga-core.s3.amazonaws.com/production/uploads/program/default_image/2720/GA_Logo.png" alt="GA Logo" style="width: 108px; height: 126px"> <h1>carpool finder!</h1>
+
+        <h3>Find other people commuting to GA from your neighborhood and form a carpool!</h3>
+
+      </div>
+
+      <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary btn-lg' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary btn-lg' %>
+
+    </div>
+
   </div>
+
 </div>

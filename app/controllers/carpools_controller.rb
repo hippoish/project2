@@ -14,18 +14,16 @@ class CarpoolsController < ApplicationController
     @carpool = @neighborhood.carpools.new(carpool_params)
     @carpool.users = []
     @carpool.users << current_user
-    # @user = current_user
-    # @user.carpool = @carpool
-    # @user.save
 
     if @carpool.save
-      redirect_to :back, notice: 'Carpool was successfully created.'
+      redirect_to :back
     else
       render :new
     end
   end
 
   def show
+    @image = @neighborhood.img_url
   end
 
   def edit
@@ -34,7 +32,7 @@ class CarpoolsController < ApplicationController
   def update
 
     if @carpool.update_attributes(:carpool)
-      redirect_to @carpool, notice: 'Carpool was successfully updated.'
+      redirect_to @carpool
     else
       render :edit
     end
@@ -46,7 +44,7 @@ class CarpoolsController < ApplicationController
       user.carpool = nil
     end
     current_user.carpool = nil
-    redirect_to @neighborhood, notice: 'Carpool was successfully destroyed.'
+    redirect_to @neighborhood
   end
 
   def join_carpool
@@ -54,7 +52,7 @@ class CarpoolsController < ApplicationController
     current_user.carpool = @carpool
 
     if @carpool.save
-      redirect_to neighborhood_carpool_path(@neighborhood, @carpool), notice: 'You joined this Carpool!'
+      redirect_to neighborhood_carpool_path(@neighborhood, @carpool)
     else
       render :edit
     end
@@ -65,7 +63,7 @@ class CarpoolsController < ApplicationController
     # current_user.save
 
     if current_user.save
-      redirect_to neighborhood_carpool_path(@neighborhood, @carpool), notice: 'You are no longer in this Carpool.'
+      redirect_to neighborhood_carpool_path(@neighborhood, @carpool)
     else
       render :edit
     end

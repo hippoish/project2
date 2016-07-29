@@ -1,76 +1,118 @@
-<header>
-  <div class='jumbotron neighborhood-header' style="background-image: url('<%= @neighborhood.img_url %>')">
-    <div class="container neighborhood-name">
-      <h1 class='display-3'><%= @neighborhood.name %></h1>
-    </div>
-  </div>
-</header>
+<%= render 'partials/neighborhood_header' %>
 
 <div class='container'>
+
   <h3>Current <%= @neighborhood.name %> Carpools</h3>
 
-
-  <%= "There are currently no carpools in your neighborhood. Create one below." if @neighborhood.posts.length == 0 %>
-
   <ul class='list-group'>
+
     <% @neighborhood.carpools.each do |carpool| %>
-      <li class='list-group-item'><%= carpool.name %>&nbsp;&nbsp;<%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %> <%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %></li>
+
+      <!-- display a message if there are no carpools yet -->
+      <% if @neighborhood.carpools == 0 %>
+        <li class='list-group-item'><%= "There are currently no carpools in your neighborhood. Create one below."%></li>
+      <% end %>
+
+      <!-- show each carpool's name (and delete link if they are the owner)-->
+      <li class='list-group-item'><%= carpool.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'View this carpool', neighborhood_carpool_path(@neighborhood, carpool) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= link_to ' Delete this carpool', neighborhood_carpool_path(@neighborhood, carpool), method: :delete, data: { confirm: 'Are you sure?'  } if carpool.users.first == current_user %></li>
+
     <% end %>
+
   </ul>
 
+  <!-- show create new carpool button if the current user isn't in one already -->
   <% unless current_user.carpool %>
+
     <!-- Button to trigger new carpool modal -->
-    <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newCarpool'>Create a New Carpool</button>
+    <button type='button' class='btn btn-primary btn-lg btn-center' data-toggle='modal' data-target='#newCarpool'>Create a New Carpool</button>
+
     <!-- Modal -->
     <div class='modal fade' id='newCarpool'>
+
       <div class="modal-dialog modal-sm" role='document'>
+
         <div class="modal-content">
+
           <div class="modal-body">
+
             <%= render 'partials/form_new_carpool' %>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   <% end %>
 
+  <!-- display the message board -->
   <h3>Neighborhood Posts</h3>
 
   <div class='detailBox'>
-    <%= "You are the first person from your neighborhood to post! Tell people what you're looking for." if @neighborhood.posts.length == 0 %>
-    <% @neighborhood.posts.each do |post| %>
-      <!-- <div class='titleBox'>
-        <strong><%= post.user.f_name %></strong>
-      </div> -->
-      <div class='commentBox'>
-        <p class='taskDescription'><strong><%= post.user.f_name %></strong></p>
-        <p class='taskDescription'><%= post.content %></p>
-        <span class='date sub-text'><%= post.created_at %></span>
-         <%#= link_to 'edit this post', edit_neighborhood_post_path(@neighborhood, post) if post.user == current_user %> <%= link_to 'delete this post', neighborhood_post_path(@neighborhood, post), method: :delete, data: {confirm: 'Are you sure?'} if post.user == current_user %>
-      </div>
-      <div class='actionBox'>
-        <ul class='commentList'>
-          <% if post.replies %>
-            <% post.replies.each do |reply| %>
-              <li>
-                <div class='commenterImage'>
-                  <img src='http://placedog.com/60/60'>
-                </div>
-                <div class='commentText'>
-                  <p class=''><strong><%= reply.user.f_name %></strong></p>
-                  <p class=''><%= reply.content %></p>
-                  <span class='date sub-text'><%= reply.created_at %></span>
-                  <%#= ' | ' if post.user == current_user %><%#= link_to 'edit this reply', edit_neighborhood_post_reply_path(@neighborhood, post, reply) if reply.user == current_user %><%#= ' | ' if post.user == current_user %> <%= link_to 'delete this reply', neighborhood_post_reply_path(@neighborhood, post, reply), method: :delete, data: {confirm: 'Are you sure?'} if reply.user == current_user %>
-                </div>
-              </li>
-            <% end %>
-          <% end %>
-          <%= render 'partials/form_reply', :post => post %>
-        </ul>
-      </div>
-    <%#= link_to 'Reply to this post', new_neighborhood_post_reply_path(@neighborhood.id, post.id) %>
-    <% end %>
-    <%= render 'partials/form_post' %>
-  </div>
-</div>
 
-<%#= link_to 'Create a new post', new_neighborhood_post_path(@neighborhood.id) %>
+    <%= "You are the first person from your neighborhood to post! Tell people what you're looking for." if @neighborhood.posts.length == 0 %>
+
+    <% @neighborhood.posts.each do |post| %>
+
+      <div class='commentBox'>
+
+        <p class='taskDescription'><strong><%= post.user.f_name %></strong></p>
+
+        <p class='taskDescription'><%= post.content %></p>
+
+        <span class='date sub-text'><%= post.created_at %></span>
+
+        <!-- display delete button if the post was created by the current user -->
+        <%= link_to 'delete this post', neighborhood_post_path(@neighborhood, post), method: :delete, data: {confirm: 'Are you sure?'} if post.user == current_user %>
+
+      </div>
+
+      <div class='actionBox'>
+
+        <ul class='commentList'>
+
+          <% if post.replies %>
+
+            <% post.replies.each do |reply| %>
+
+              <li>
+
+                <div class='commenterImage'>
+
+                  <img src='http://placedog.com/60/60'>
+
+                </div>
+
+                <div class='commentText'>
+
+                  <p class=''><strong><%= reply.user.f_name %></strong></p>
+
+                  <p class=''><%= reply.content %></p>
+
+                  <span class='date sub-text'><%= reply.created_at %></span>
+
+                  <%= link_to 'delete this reply', neighborhood_post_reply_path(@neighborhood, post, reply), method: :delete, data: {confirm: 'Are you sure?'} if reply.user == current_user %>
+
+                </div>
+
+              </li>
+
+            <% end %>
+
+          <% end %>
+
+          <%= render 'partials/form_reply', :post => post %>
+
+        </ul>
+
+      </div>
+
+    <% end %>
+
+    <%= render 'partials/form_post' %>
+
+  </div>
+
+</div>

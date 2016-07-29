@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :neighborhood, "Where do you live?" %><br />
-    <%= f.collection_select(:neighborhood_id, Neighborhood.all, :id, :name) %>
+    <%= f.collection_select(:neighborhood_id, Neighborhood.order('name'), :id, :name, :include_blank => true) %>
   </div>
 
   <div class="field">
@@ -47,7 +47,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn btn-primary btn-lg' %>
   </div>
 <% end %>
 

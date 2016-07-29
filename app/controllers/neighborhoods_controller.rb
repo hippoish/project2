@@ -1,5 +1,9 @@
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood
+  before_action :set_neighborhood, except: :index
+
+  def index
+    @neighborhoods = Neighborhood.all
+  end
 
   def new
     @neighborhood = Neighborhood.new
@@ -9,7 +13,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.new
 
     if @neighborhood.save
-      redirect_to current_user, notice: 'Neighborhood was successfully created.'
+      redirect_to current_user
     else
       render :new
     end
@@ -19,6 +23,7 @@ class NeighborhoodsController < ApplicationController
     @carpool = Carpool.new
     @post = Post.new
     @reply = Reply.new
+    @image = @neighborhood.img_url
   end
 
   def edit
@@ -27,15 +32,10 @@ class NeighborhoodsController < ApplicationController
   def update
 
     if @neighborhood.update_attributes(:neighborhood)
-      redirect_to current_user, notice: 'Neighborhood was successfully updated.'
+      redirect_to @neighborhood
     else
       render :edit
     end
-  end
-
-  def destroy
-    @neighborhood.destroy
-    redirect_to current_user, notice: 'Neighborhood was successfully destroyed.'
   end
 
 private
@@ -43,5 +43,4 @@ private
     @neighborhood = Neighborhood.find(params[:id])
   end
 
-  
 end

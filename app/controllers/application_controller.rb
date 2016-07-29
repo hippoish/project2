@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # redirect user after sign_in or sign_up
   def after_sign_in_path_for(resource)
+    neighborhood_path(current_user.neighborhood_id)
+  end
+
+  def after_update_path_for(resource)
     neighborhood_path(current_user.neighborhood_id)
   end
 
