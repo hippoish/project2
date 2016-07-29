@@ -17,7 +17,7 @@ I would like to ultimately make the app more restrictive and useful for actually
 
 
 ####ERD:
-![Project 2 ERD](app/assets/images/project2_erd)
+![Project 2 ERD](app/assets/images/project2_erd.png)
 
 ####Wireframes:
 ![Project 2 Wireframe](app/assets/images/project2_wire_frame.png)
