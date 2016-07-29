@@ -1,6 +1,8 @@
 #Project 2 README
-### Commute RideShare/Carpool application
+### Diamond Lane: GA Carpool application
 
+####Link to app hosted on Heroku
+https://carpool-app-project-2.herokuapp.com/
 
 ####Project Board on Trello
 https://trello.com/b/29l8TAg4/project2
@@ -10,9 +12,12 @@ This app will provide a place for people to connect with coworkers or fellow stu
 
 The MVP will be for a single workplace/school with many employees commuting from different areas. It will allow users to create and view carpools and join one at a time. Stretch goals include integrating mapping functionality to locate and group users, and having a group administrator to make sure all users are actual members of the destination community.
 
+####Other Stuff
+I would like to ultimately make the app more restrictive and useful for actually planning: limit users in carpool based on seats, integrate maps for more precise matching of users, etc. I would like to have an administrator who has to confirm when a user signs up that they are a member of the GA community, for security reasons.
+
 
 ####ERD:
-![Project 2 ERD](assets/project2_erd)
+![Project 2 ERD](app/assets/images/project2_erd)
 
 ####Wireframes:
-![Project 2 Wireframe](assets/project2_wire_frame.png)
+![Project 2 Wireframe](app/assets/images/project2_wire_frame.png)
