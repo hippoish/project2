@@ -8,10 +8,13 @@ https://carpool-app-project-2.herokuapp.com/
 https://trello.com/b/29l8TAg4/project2
 
 ####Technologies
+- Ruby on Rails
+- PostgreSQL
 - HTML5
 - CSS
 - Bootstrap
-- Ruby on Rails
+- Heroku
+- Devise
 
 ####Description:
 This app will provide a place for people to connect with coworkers or fellow students who live near them and are interested in carpooling! After creating an account, a user can access the ride board for their neighborhood/area and post messages detailing their commuting schedules, what they are looking for, and other details.  They can then start carpools or join existing groups.
