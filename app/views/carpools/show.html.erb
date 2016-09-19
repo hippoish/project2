@@ -4,7 +4,7 @@
 
   <h1><%= @carpool.name %></h1>
 
-  <!-- if a user is the primary member of a carpool, allow them to edit or delete it -->
+  <!-- if a user is the first/primary member of a carpool, allow them to edit or delete it -->
   <% if @carpool.users.first == current_user %>
     <!-- Button to trigger new carpool modal -->
     <button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editCarpool'>Edit This Carpool</button>
@@ -30,7 +30,7 @@
 
     </div>
 
-    <!-- delete button -->
+    <!-- delete button if the current user is the first member of this carpool -->
     <%= link_to ' Delete this Carpool', neighborhood_carpool_path(@neighborhood, @carpool), class: 'btn btn-primary btn-lg', method: :delete, data: { confirm: 'Are you sure?' } if @carpool.users.first == current_user %>
 
   <% end %>
