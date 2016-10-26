@@ -2,7 +2,7 @@
 ### Diamond Lane: GA Carpool application
 
 ####Link to app hosted on Heroku
-https://carpool-app-project-2.herokuapp.com/
+https://diamond-lane.herokuapp.com
 
 ####Project Board on Trello
 https://trello.com/b/29l8TAg4/project2
